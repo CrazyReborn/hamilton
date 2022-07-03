@@ -1,3 +1,5 @@
+import selectionSort from "./algorithms/selectionSort.js";
+
 const section = document.getElementById('section');
 const height = document.body.clientHeight;
 let array = [];
@@ -5,6 +7,7 @@ let array = [];
 function renderSection(array) {
   clearSection();
   populateSection(array);
+  selectionSort(array);
 }
 
 function populateSection(array) {
