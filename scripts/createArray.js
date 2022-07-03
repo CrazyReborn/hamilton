@@ -13,7 +13,7 @@ function populateSection(array) {
     newDiv.className = 'array-element';
     newDiv.setAttribute('value', value);
     newDiv.setAttribute('key', index);
-    newDiv.style.height = `${height / 100 * value}px`;
+    newDiv.style.height = `${height / 110 * value}px`;
     newDiv.style.width = `${10}px`;
     newDiv.textContent = ' ';
     section.appendChild(newDiv);
