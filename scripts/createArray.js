@@ -2,8 +2,12 @@ const section = document.getElementById('section');
 const height = document.body.clientHeight;
 let array = [];
 
-function populateSection(array) {
+function renderSection(array) {
   clearSection();
+  populateSection(array);
+}
+
+function populateSection(array) {
   array.forEach((value, index) => {
     const newDiv = document.createElement('div');
     newDiv.className = 'array-element';
@@ -24,5 +28,5 @@ function clearSection() {
 
 export default function createArray(numberOfElements) {
   array = Array.from({length: numberOfElements}, () => Math.floor(Math.random() * numberOfElements));
-  populateSection(array);
+  renderSection(array);
 }
