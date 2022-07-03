@@ -19,3 +19,11 @@ html, body {
   content: "";
   background-color: blue;
 }
+
+.visualiser > div.min {
+  background-color: green;
+}
+
+.visualiser > div.current {
+  background-color: red;
+}

@@ -1,16 +1,4 @@
-// 1. define the first element as min and mainIndex as array[0];
-// 2.
-//    a) define subindex as mainIndex + 1 to iterate over the subArray;
-//    b) define subMin as array[subIndex];
-// 3. find the min(submin) in the subarray;
-// 4. if submin is less than mainmin -> swap;
-// 5. increase mainIndex bby one
-// 6. repeat;
-
-export default function selectionSort(array) {
-  console.log('before: ');
-  console.log(array);
-
+function selectionSort(array) {
   for (let i = 0; i < array.length; i++) {
     let min = array[i];
     let minIdex = i;
@@ -21,11 +9,44 @@ export default function selectionSort(array) {
         minIdex = i2;
       }
     }
-      let ref = min;
-      array[minIdex] = array[i];
-      array[i] = ref;
+    let ref = min;
+    array[minIdex] = array[i];
+    array[i] = ref;
   }
+}
 
-  console.log('after:');
-  console.log(array);
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+export async function selectionSortOnNodeList(nodeList) {
+  for (let i = 0; i < nodeList.length; i++) {
+    let min = parseInt(nodeList[i].getAttribute('value'));
+    let minIndex = i;
+    
+
+    for (let x = i + 1; x < nodeList.length; x++) {
+      if (parseInt(nodeList[x].getAttribute('value')) < min) {
+        min = parseInt(nodeList[x].getAttribute('value'));
+        minIndex = x;
+      }
+    }
+    await sleep(100);
+    nodeList[minIndex].classList.add('min');
+    nodeList[i].classList.add('current');
+    if (minIndex != i) {
+      await replaceChildren(nodeList[minIndex], nodeList[i]);
+      nodeList[minIndex].classList.remove('min');
+    }
+    nodeList[i].classList.remove('current');
+
+  }
+}
+
+function replaceChildren(element1, element2) {
+  let clonedElement1 = element1.cloneNode(true);
+  let clonedElement2 = element2.cloneNode(true);
+  element1.parentNode.replaceChild(clonedElement2, element1);
+  element2.parentNode.replaceChild(clonedElement1, element2);
+  return element1;
 }

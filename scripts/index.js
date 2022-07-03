@@ -1,4 +1,5 @@
 import createArray from './createArray.js';
+import { selectionSortOnNodeList } from './algorithms/selectionSort.js';
 
 (function main() {
   const rangeInputElement = document.getElementById('range');
@@ -9,6 +10,11 @@ import createArray from './createArray.js';
     rangeInputValue = e.currentTarget.value;
     createArray(rangeInputValue);
   });
+
+  startButton.addEventListener('click', () => {
+    const nodeList = document.getElementsByClassName('array-element');
+    selectionSortOnNodeList(nodeList);
+  })
 })();
 
 
