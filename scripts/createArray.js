@@ -4,11 +4,12 @@ let array = [];
 
 function populateSection(array) {
   clearSection();
-  array.forEach((value) => {
+  array.forEach((value, index) => {
     const newDiv = document.createElement('div');
     newDiv.className = 'array-element';
     newDiv.setAttribute('value', value);
-    newDiv.style.height = `${height / 50 * value}px`;
+    newDiv.setAttribute('key', index);
+    newDiv.style.height = `${height / 100 * value}px`;
     newDiv.style.width = `${10}px`;
     newDiv.textContent = ' ';
     section.appendChild(newDiv);
@@ -22,6 +23,6 @@ function clearSection() {
 }
 
 export default function createArray(numberOfElements) {
-  array = Array.from({length: 40}, () => Math.floor(Math.random() * 40));
+  array = Array.from({length: numberOfElements}, () => Math.floor(Math.random() * numberOfElements));
   populateSection(array);
 }
