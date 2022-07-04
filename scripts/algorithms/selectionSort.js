@@ -32,13 +32,11 @@ export async function selectionSortOnNodeList(nodeList) {
       }
     }
     await sleep(100);
-    nodeList[minIndex].classList.add('min');
-    nodeList[i].classList.add('current');
+    nodeList[minIndex].classList.add('sorted');
     if (minIndex != i) {
       await replaceChildren(nodeList[minIndex], nodeList[i]);
-      nodeList[minIndex].classList.remove('min');
+      nodeList[minIndex].classList.remove('sorted');
     }
-    nodeList[i].classList.remove('current');
 
   }
 }
