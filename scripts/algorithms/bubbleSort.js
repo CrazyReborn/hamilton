@@ -1,7 +1,7 @@
 import { replaceChildren } from '../replaceChildren.js';
 import { sleep } from '../sleep.js';
 
-function bubleSort(array) {
+function bubbleSort(array) {
   for (let i = 0; i < array.length; i++) {
     for (let x = 0; x < array.length; x++) {
       if (array[x] > array[x + 1]) {
@@ -13,7 +13,7 @@ function bubleSort(array) {
   }
 }
 
-export async function bubleSortOnNodeList(nodeList) {
+export async function bubbleSortOnNodeList(nodeList) {
   for (let i = 0; i < nodeList.length; i++) {
     for (let x = 0; x < nodeList.length; x++) {
       if (x + 1 < nodeList.length && parseInt(nodeList[x].getAttribute('value')) > parseInt(nodeList[x + 1].getAttribute('value'))) {

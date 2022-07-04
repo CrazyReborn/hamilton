@@ -1,6 +1,7 @@
 import createArray from './createArray.js';
 import { selectionSortOnNodeList } from './algorithms/selectionSort.js';
-import { bubleSortOnNodeList } from './algorithms/bubbleSort.js';
+import { bubbleSortOnNodeList } from './algorithms/bubbleSort.js';
+import { insertionSortOnNodeList } from './algorithms/insertionSort.js';
 
 (function main() {
   const rangeInputElement = document.getElementById('range');
@@ -19,6 +20,9 @@ import { bubleSortOnNodeList } from './algorithms/bubbleSort.js';
       case 'buble-sort':
         selectedAlgo = 'buble-sort';
         break;
+      case 'insertion-sort':
+        selectedAlgo = 'insertion-sort';
+        break;
     }
   })
 
@@ -33,10 +37,14 @@ import { bubleSortOnNodeList } from './algorithms/bubbleSort.js';
       case 'selection-sort':
         selectionSortOnNodeList(nodeList);
         break;
-      case 'buble-sort':
-        bubleSortOnNodeList(nodeList);
+      case 'bubble-sort':
+        bubbleSortOnNodeList(nodeList);
+        break;
+      case 'insertion-sort':
+        insertionSortOnNodeList(nodeList);
         break;
     }
   })
 })();
 
+//let arr = [2,5,1,1,0,7,12,3];
