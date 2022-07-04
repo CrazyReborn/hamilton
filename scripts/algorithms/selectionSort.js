@@ -1,3 +1,6 @@
+import { replaceChildren } from '../replaceChildren.js';
+import { sleep } from '../sleep.js';
+
 function selectionSort(array) {
   for (let i = 0; i < array.length; i++) {
     let min = array[i];
@@ -13,10 +16,6 @@ function selectionSort(array) {
     array[minIdex] = array[i];
     array[i] = ref;
   }
-}
-
-const sleep = (milliseconds) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
 export async function selectionSortOnNodeList(nodeList) {
@@ -41,10 +40,3 @@ export async function selectionSortOnNodeList(nodeList) {
   }
 }
 
-function replaceChildren(element1, element2) {
-  let clonedElement1 = element1.cloneNode(true);
-  let clonedElement2 = element2.cloneNode(true);
-  element1.parentNode.replaceChild(clonedElement2, element1);
-  element2.parentNode.replaceChild(clonedElement1, element2);
-  return element1;
-}

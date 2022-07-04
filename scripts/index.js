@@ -1,5 +1,6 @@
 import createArray from './createArray.js';
 import { selectionSortOnNodeList } from './algorithms/selectionSort.js';
+import { bubleSortOnNodeList } from './algorithms/bubbleSort.js';
 
 (function main() {
   const rangeInputElement = document.getElementById('range');
@@ -15,6 +16,9 @@ import { selectionSortOnNodeList } from './algorithms/selectionSort.js';
       case 'selection-sort':
         selectedAlgo = 'selection-sort';
         break;
+      case 'buble-sort':
+        selectedAlgo = 'buble-sort';
+        break;
     }
   })
 
@@ -28,8 +32,11 @@ import { selectionSortOnNodeList } from './algorithms/selectionSort.js';
     switch(selectedAlgo) {
       case 'selection-sort':
         selectionSortOnNodeList(nodeList);
+        break;
+      case 'buble-sort':
+        bubleSortOnNodeList(nodeList);
+        break;
     }
   })
 })();
-
 

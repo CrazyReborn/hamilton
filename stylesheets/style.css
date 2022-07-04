@@ -23,3 +23,7 @@ html, body {
 .visualiser > div.sorted {
   background-color: green;
 }
+
+.visualiser > div.curr {
+  background-color: red;
+}
