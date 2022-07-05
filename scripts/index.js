@@ -2,6 +2,7 @@ import createArray from './createArray.js';
 import { selectionSortOnNodeList } from './algorithms/selectionSort.js';
 import { bubbleSortOnNodeList } from './algorithms/bubbleSort.js';
 import { insertionSortOnNodeList } from './algorithms/insertionSort.js';
+import { mergeSortOnNodeList } from './algorithms/mergeSort.js';
 
 (function main() {
   const rangeInputElement = document.getElementById('range');
@@ -11,19 +12,7 @@ import { insertionSortOnNodeList } from './algorithms/insertionSort.js';
   let rangeInputValue = 0;
 
   algoSelector.addEventListener('change', (e) => {
-    switch (e.target.value) {
-      case '':
-        break;
-      case 'selection-sort':
-        selectedAlgo = 'selection-sort';
-        break;
-      case 'buble-sort':
-        selectedAlgo = 'buble-sort';
-        break;
-      case 'insertion-sort':
-        selectedAlgo = 'insertion-sort';
-        break;
-    }
+    selectedAlgo = e.target.value;
   })
 
   rangeInputElement.addEventListener('change',(e) => {
@@ -33,6 +22,7 @@ import { insertionSortOnNodeList } from './algorithms/insertionSort.js';
 
   startButton.addEventListener('click', () => {
     const nodeList = document.getElementsByClassName('array-element');
+    let array = Array.from(nodeList);
     switch(selectedAlgo) {
       case 'selection-sort':
         selectionSortOnNodeList(nodeList);
@@ -43,8 +33,10 @@ import { insertionSortOnNodeList } from './algorithms/insertionSort.js';
       case 'insertion-sort':
         insertionSortOnNodeList(nodeList);
         break;
+      case 'merge-sort':
+        const sorted = mergeSortOnNodeList(array);
     }
   })
 })();
 
-//let arr = [2,5,1,1,0,7,12,3];
+//let arr = [2,5,1,1,0,7,12,3,22,4,5,17];
