@@ -22,7 +22,6 @@ import { mergeSortOnNodeList } from './algorithms/mergeSort.js';
 
   startButton.addEventListener('click', () => {
     const nodeList = document.getElementsByClassName('array-element');
-    let array = Array.from(nodeList);
     switch(selectedAlgo) {
       case 'selection-sort':
         selectionSortOnNodeList(nodeList);
@@ -34,7 +33,7 @@ import { mergeSortOnNodeList } from './algorithms/mergeSort.js';
         insertionSortOnNodeList(nodeList);
         break;
       case 'merge-sort':
-        const sorted = mergeSortOnNodeList(array);
+        mergeSortOnNodeList(Array.from(nodeList));
     }
   })
 })();

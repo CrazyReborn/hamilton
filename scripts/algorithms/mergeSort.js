@@ -15,8 +15,7 @@ export function mergeSort(array) {
     if (i < middle) {
       leftArray[i] = array[i];
     } else {
-      rightArray[x] = array[i];
-      x++;
+      rightArray[x++] = array[i];
     }
   }
   mergeSort(leftArray);
@@ -31,87 +30,91 @@ function merge(leftArray, rightArray, array) {
 
   while(l < leftSize && r < rightSize) {
     if (leftArray[l] < rightArray[r]) {
-      array[i] = leftArray[l];
-      l++;
+      array[i] = leftArray[l++];
     } else {
-      array[i] = rightArray[r];
-      r++;
+      array[i] = rightArray[r++];
     }
-    i++;
   }
 
   while(l < leftSize) {
-    array[i] = leftArray[l];
-    l++;
-    i++;
+    array[i++] = leftArray[l++];
   }
 
   while(r < rightSize) {
-    array[i] = rightArray[r];
-    r++;
-    i++;
+    array[i++] = rightArray[r++];
   }
 }
 
-const elems = document.getElementsByClassName('array-element');
+const elems = Array.from(document.getElementsByClassName('array-element'));
+const sec = document.querySelector('.visualiser');
 
-export async function mergeSortOnNodeList(nodeList) {
-  if (nodeList.length <= 1) return;
+export function mergeSortOnNodeList(nodeList) {
 
-  let midIndex = Math.floor(nodeList.length / 2);
+  if (nodeList.length < 2) return nodeList;
+  let midleIndex = ~~(nodeList.length/2);
 
   let leftArray = [];
   let rightArray = [];
 
   for (let i = 0; i < nodeList.length; i++) {
-    if (i < midIndex) {
+    if (i < midleIndex) {
       leftArray.push(nodeList[i]);
     } else {
       rightArray.push(nodeList[i]);
     }
   }
-  mergeSortOnNodeList(leftArray);
-  mergeSortOnNodeList(rightArray);
-  nodeList = mergeOnNodeList(leftArray, rightArray, nodeList);
-  let a = 0;
-  if (nodeList.length == elems.length) {
-    
-    for (let ele of elems) {
-      await sleep(50);
-      ele != nodeList[a] ? replaceChildren(ele, nodeList[a]) : '';
-      a++;
-    }
-  }
-  return nodeList; 
+
+  leftArray = mergeSortOnNodeList(leftArray);
+  rightArray = mergeSortOnNodeList(rightArray);
+  return nodeList = mergeOnNodeList(leftArray, rightArray, nodeList);
 }
 
 function mergeOnNodeList(leftArray, rightArray, nodeList) {
-
-  let leftLength = leftArray.length;
-  let rightLength = rightArray.length;
-
-
-  let i = 0;
-  let l = 0;
-  let r = 0;
-
-  while(l < leftLength && r < rightLength) {
-    if (parseInt(leftArray[l].getAttribute('value')) < parseInt(rightArray[r].getAttribute('value'))) {
-      nodeList[i] = leftArray[l++];
+  if (typeof leftArray == 'undefined' && typeof rightArray == 'undefined') return nodeList;
+  let index = 0;
+  let left = 0;
+  let right = 0;
+  while(left < leftArray.length && right < rightArray.length) {
+    if (getValue(leftArray[left]) <= getValue(rightArray[right])) {
+      //nodeList[index++] = leftArray[left++];
+      c(leftArray[left], nodeList[index]);
+      index++;
+      left++;
     } else {
-      nodeList[i] = rightArray[r++];
+      //nodeList[index++] = rightArray[right++];
+      c(rightArray[right], nodeList[index]);
+      index++;
+      right++;
     }
-    i++;
   }
 
-  while(leftLength != -1 && l < leftLength ) {
-    nodeList[i] = leftArray[l++];
-    i++;
-  }
-  while(rightLength != -1 && r < rightLength) {
-    nodeList[i] = rightArray[r++];
-    i++;
+  while(left < leftArray.length) {
+    //nodeList[index++] = leftArray[left++];
+    c(leftArray[left], nodeList[index]);
+    index++;
+    left++;
   }
 
+  while(right < rightArray.length) {
+    //nodeList[index++] = rightArray[right++];
+    c(rightArray[right], nodeList[index]);
+    index++;
+    right++;
+  }
+
+  console.log(nodeList);
   return nodeList;
+}
+
+function getValue(node) {
+  return parseInt(node.getAttribute('value'));
+}
+
+function c(el1, el2) {
+  let found1 = Array.from(sec.childNodes).find((e) => e == el1);
+  let found2 = Array.from(sec.childNodes).find((e) => e == el2);
+  console.log(found1);
+  console.log(found2);
+  found1.parnetNode.replaceChild(el2, found1);
+  found2.parnetNode.replaceChild(el1, found2);
 }
