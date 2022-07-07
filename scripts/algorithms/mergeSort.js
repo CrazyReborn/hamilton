@@ -48,47 +48,48 @@ function merge(leftArray, rightArray, array) {
 const elems = document.getElementsByClassName('array-element');
 const sec = document.querySelector('.visualiser');
 
-export function mergeSortOnNodeList(nodeList) {
+export async function mergeSortOnNodeList(nodeList) {
+  await sleep(5);
   if (nodeList.length < 2) return nodeList;
   let midleIndex = ~~(nodeList.length / 2);
 
-  let leftArray = [];
-  let rightArray = [];
+  let leftArray = nodeList.slice(0, midleIndex);
+  let rightArray = nodeList.slice(midleIndex);
 
-  for (let i = 0; i < nodeList.length; i++) {
-    if (i < midleIndex) {
-      leftArray.push(nodeList[i]);
-    } else {
-      rightArray.push(nodeList[i]);
-    }
-  }
-
-  leftArray = mergeSortOnNodeList(leftArray);
-  rightArray = mergeSortOnNodeList(rightArray);
-  nodeList = mergeOnNodeList(leftArray, rightArray, nodeList);
-
+  leftArray = await mergeSortOnNodeList(leftArray);
+  rightArray = await mergeSortOnNodeList(rightArray);
+  
+  nodeList = await mergeOnNodeList(leftArray, rightArray, nodeList);
   return nodeList;
 }
 
-function mergeOnNodeList(leftArray, rightArray, nodeList) {
+async function mergeOnNodeList(leftArray, rightArray, nodeList) {
   //if (typeof leftArray == 'undefined' && typeof rightArray == 'undefined') return nodeList;
   let index = 0;
   let left = 0;
   let right = 0;
+  await sleep(100);
   while (left < leftArray.length && right < rightArray.length) {
     if (getValue(leftArray[left]) <= getValue(rightArray[right])) {
-
+      swap(leftArray[left], index);
+      //left++;
       nodeList[index++] = leftArray[left++];
     } else {
+      swap(rightArray[right], index);
       nodeList[index++] = rightArray[right++];
     }
+    //index++;
   }
 
   while (left < leftArray.length) {
+    //left++;
+    swap(leftArray[left], index);
     nodeList[index++] = leftArray[left++];
   }
 
   while (right < rightArray.length) {
+    //right++;
+    swap(rightArray[right], index);
     nodeList[index++] = rightArray[right++];
   }
   return nodeList;
@@ -96,4 +97,10 @@ function mergeOnNodeList(leftArray, rightArray, nodeList) {
 
 function getValue(node) {
   return parseInt(node.getAttribute('value'));
+}
+
+async function swap(node, index) {
+  await sleep(100);
+  node.style.order = index;
+  return true;
 }

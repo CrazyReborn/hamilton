@@ -27,3 +27,7 @@ html, body {
 .visualiser > div.curr {
   background-color: red;
 }
+
+.array-element {
+  display: flex;
+}
