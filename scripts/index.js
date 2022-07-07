@@ -3,6 +3,8 @@ import { selectionSortOnNodeList } from './algorithms/selectionSort.js';
 import { bubbleSortOnNodeList } from './algorithms/bubbleSort.js';
 import { insertionSortOnNodeList } from './algorithms/insertionSort.js';
 import { mergeSortOnNodeList } from './algorithms/mergeSort.js';
+import { addOrder } from './addOrder.js';
+import { removeOrder } from './removeOrder.js';
 
 (function main() {
   const rangeInputElement = document.getElementById('range');
@@ -33,7 +35,9 @@ import { mergeSortOnNodeList } from './algorithms/mergeSort.js';
         insertionSortOnNodeList(nodeList);
         break;
       case 'merge-sort':
-        console.log(mergeSortOnNodeList(Array.from(nodeList)));
+        addOrder(nodeList);
+        mergeSortOnNodeList(Array.from(nodeList));
+        removeOrder(nodeList);
     }
   })
 })();

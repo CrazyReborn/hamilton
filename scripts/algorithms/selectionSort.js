@@ -1,5 +1,6 @@
 import { replaceChildren } from '../replaceChildren.js';
 import { sleep } from '../sleep.js';
+import { swap } from './mergeSort.js';
 
 function selectionSort(array) {
   for (let i = 0; i < array.length; i++) {
@@ -33,6 +34,8 @@ export async function selectionSortOnNodeList(nodeList) {
     await sleep(100);
     nodeList[minIndex].classList.add('sorted');
     if (minIndex != i) {
+      let tempinx = minIndex;
+      swap(nodeList[i], minIndex);
       await replaceChildren(nodeList[minIndex], nodeList[i]);
       nodeList[minIndex].classList.remove('sorted');
     }

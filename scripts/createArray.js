@@ -15,7 +15,6 @@ function populateSection(array) {
     newDiv.setAttribute('value', value);
     newDiv.style.height = `${height / 110 * value}px`;
     newDiv.style.width = `${10}px`;
-    newDiv.style.order = index;
     section.appendChild(newDiv);
   })
 }

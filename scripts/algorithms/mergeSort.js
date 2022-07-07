@@ -94,8 +94,9 @@ function getValue(node) {
   return parseInt(node.getAttribute('value'));
 }
 
-async function swap(node, index) {
+export async function swap(node, index) {
   await sleep(100);
   node.style.order = index;
+  await sleep(50);
   return true;
 }
