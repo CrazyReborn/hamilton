@@ -64,7 +64,6 @@ export async function mergeSortOnNodeList(nodeList) {
 }
 
 async function mergeOnNodeList(leftArray, rightArray, nodeList) {
-  //if (typeof leftArray == 'undefined' && typeof rightArray == 'undefined') return nodeList;
   let index = 0;
   let left = 0;
   let right = 0;
@@ -72,23 +71,19 @@ async function mergeOnNodeList(leftArray, rightArray, nodeList) {
   while (left < leftArray.length && right < rightArray.length) {
     if (getValue(leftArray[left]) <= getValue(rightArray[right])) {
       swap(leftArray[left], index);
-      //left++;
       nodeList[index++] = leftArray[left++];
     } else {
       swap(rightArray[right], index);
       nodeList[index++] = rightArray[right++];
     }
-    //index++;
   }
 
   while (left < leftArray.length) {
-    //left++;
     swap(leftArray[left], index);
     nodeList[index++] = leftArray[left++];
   }
 
   while (right < rightArray.length) {
-    //right++;
     swap(rightArray[right], index);
     nodeList[index++] = rightArray[right++];
   }
