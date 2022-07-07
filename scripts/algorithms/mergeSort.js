@@ -67,7 +67,7 @@ async function mergeOnNodeList(leftArray, rightArray, nodeList) {
   let index = 0;
   let left = 0;
   let right = 0;
-  await sleep(100);
+  await sleep(45);
   while (left < leftArray.length && right < rightArray.length) {
     if (getValue(leftArray[left]) <= getValue(rightArray[right])) {
       swap(leftArray[left], index);
@@ -94,9 +94,7 @@ function getValue(node) {
   return parseInt(node.getAttribute('value'));
 }
 
-export async function swap(node, index) {
-  await sleep(100);
+export function swap(node, index) {
   node.style.order = index;
-  await sleep(50);
   return true;
 }

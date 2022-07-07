@@ -37,7 +37,6 @@ import { removeOrder } from './removeOrder.js';
       case 'merge-sort':
         addOrder(nodeList);
         mergeSortOnNodeList(Array.from(nodeList));
-        removeOrder(nodeList);
     }
   })
 })();
