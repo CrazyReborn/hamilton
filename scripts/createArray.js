@@ -11,7 +11,7 @@ function populateSection(array) {
   array.forEach((value, index) => {
     const newDiv = document.createElement('div');
     newDiv.className = 'array-element';
-    newDiv.setAttribute('intial-index', index);
+    newDiv.setAttribute('initial-index', index);
     newDiv.setAttribute('value', value);
     newDiv.style.height = `${height / 110 * value}px`;
     newDiv.style.width = `${10}px`;

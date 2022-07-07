@@ -33,7 +33,7 @@ import { mergeSortOnNodeList } from './algorithms/mergeSort.js';
         insertionSortOnNodeList(nodeList);
         break;
       case 'merge-sort':
-        mergeSortOnNodeList(Array.from(nodeList));
+        console.log(mergeSortOnNodeList(Array.from(nodeList)));
     }
   })
 })();
