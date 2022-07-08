@@ -48,43 +48,45 @@ function merge(leftArray, rightArray, array) {
 const elems = document.getElementsByClassName('array-element');
 const sec = document.querySelector('.visualiser');
 
-export async function mergeSortOnNodeList(nodeList) {
-  await sleep(5);
+export async function mergeSortOnNodeList(nodeList, b, end) {
   if (nodeList.length < 2) return nodeList;
   let midleIndex = ~~(nodeList.length / 2);
 
   let leftArray = nodeList.slice(0, midleIndex);
   let rightArray = nodeList.slice(midleIndex);
 
-  leftArray = await mergeSortOnNodeList(leftArray);
-  rightArray = await mergeSortOnNodeList(rightArray);
+  await mergeSortOnNodeList(leftArray, b, midleIndex);
+  await mergeSortOnNodeList(rightArray, midleIndex, end);  
+
+  await mergeOnNodeList(leftArray, rightArray, nodeList);
+
+  visualise(nodeList, b, end);
   
-  nodeList = await mergeOnNodeList(leftArray, rightArray, nodeList);
   return nodeList;
 }
 
-async function mergeOnNodeList(leftArray, rightArray, nodeList) {
+function mergeOnNodeList(leftArray, rightArray, nodeList) {
   let index = 0;
   let left = 0;
   let right = 0;
-  await sleep(45);
+  //await sleep(100);
   while (left < leftArray.length && right < rightArray.length) {
     if (getValue(leftArray[left]) <= getValue(rightArray[right])) {
-      swap(leftArray[left], index);
+      //swap(leftArray[left], index);
       nodeList[index++] = leftArray[left++];
     } else {
-      swap(rightArray[right], index);
+      //swap(rightArray[right], index);
       nodeList[index++] = rightArray[right++];
     }
   }
 
   while (left < leftArray.length) {
-    swap(leftArray[left], index);
+    //swap(leftArray[left], index);
     nodeList[index++] = leftArray[left++];
   }
 
   while (right < rightArray.length) {
-    swap(rightArray[right], index);
+    //swap(rightArray[right], index);
     nodeList[index++] = rightArray[right++];
   }
   return nodeList;
@@ -97,4 +99,19 @@ function getValue(node) {
 export function swap(node, index) {
   node.style.order = index;
   return true;
+}
+
+async function visualise(nodeList, beg, end) {
+  let ind = 0;
+  for (let i = beg; i < end; i++) {
+    await sleep(33);
+    sec.childNodes.forEach((e) => {
+      if (e == nodeList[ind]) {
+        e.style.order = i + ind;
+        ind++;
+      }
+    })
+  }
+
+
 }
